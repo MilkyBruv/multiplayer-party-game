@@ -14,6 +14,7 @@
 # Compiled Dynamic libraries
 *.so
 *.dylib
+*.dll
 
 # Fortran module files
 *.mod
@@ -22,6 +23,7 @@
 # Compiled Static libraries
 *.lai
 *.la
+*.a
 *.lib
 
 # Executables
@@ -29,8 +31,5 @@
 *.out
 *.app
 
-# test
+# Test stuff
 *test*
-
-# vscode
-./vscode
