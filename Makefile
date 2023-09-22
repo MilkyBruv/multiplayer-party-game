@@ -1,4 +1,2 @@
 build:
-	g++ -c src/*.cpp
-	g++ -o src/game *.o -L./ -llib/raylib
-	.\src\game
+    g++ -Wall -Ilib/raylib/include src/main.cpp -o game -Llib/raylib/lib -lraylib
