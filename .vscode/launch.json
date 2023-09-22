@@ -1,60 +1,26 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-      "version": "0.2.0",
-      "configurations": [
-        {
-          "name": "Debug",
-          "type": "cppdbg",
-          "request": "launch",
-          "program": "${workspaceFolder}/${fileBasenameNoExtension}",
-          "args": [],
-          "stopAtEntry": false,
-          "cwd": "${workspaceFolder}",
-          "environment": [],
-          "externalConsole": false,
-          "MIMode": "gdb",
-          "setupCommands": [
-            {
-              "description": "Enable pretty-printing for gdb",
-              "text": "-enable-pretty-printing",
-              "ignoreFailures": false
-            }
-          ],
-          "windows": {
-            "miDebuggerPath": "C:/raylib/w64devkit/bin/gdb.exe",
-          },
-          "osx": {
-            "MIMode": "lldb"
-          },
-          "linux": {
-            "miDebuggerPath": "/usr/bin/gdb",
-          },
-          "preLaunchTask": "build debug"
-        },
-        {
-          "name": "Run",
-          "type": "cppdbg",
-          "request": "launch",
-          "args": [],
-          "stopAtEntry": false,
-          "cwd": "${workspaceFolder}",
-          "environment": [],
-          "externalConsole": false,
-          "program": "${workspaceFolder}/${fileBasenameNoExtension}",
-          "MIMode": "gdb",
-          "windows": {
-            "program": "${workspaceFolder}/${fileBasenameNoExtension}.exe",
-            "miDebuggerPath": "C:/raylib/w64devkit/bin/gdb.exe"
-          },
-          "osx": {
-            "MIMode": "lldb"
-          },
-          "linux": {
-            "miDebuggerPath": "/usr/bin/gdb"
-          },
-          "preLaunchTask": "build release",
-        }
-      ]
-    }
+	"version": "0.2.0",
+	"configurations": [
+		{
+			// Use IntelliSense to find out which attributes exist for C# debugging
+			// Use hover for the description of the existing attributes
+			// For further information visit https://github.com/dotnet/vscode-csharp/blob/main/debugger-launchjson.md
+			"name": ".NET Core Launch (console)",
+			"type": "coreclr",
+			"request": "launch",
+			"preLaunchTask": "build",
+			// If you have changed target frameworks, make sure to update the program path.
+			"program": "${workspaceFolder}/bin/Debug/net7.0/multiplayer-party-game.dll",
+			"args": [],
+			"cwd": "${workspaceFolder}",
+			// For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+			"console": "internalConsole",
+			"stopAtEntry": false
+		},
+		{
+			"name": ".NET Core Attach",
+			"type": "coreclr",
+			"request": "attach"
+		}
+	]
+}

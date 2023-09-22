@@ -1,2 +1,2 @@
-# multiplayer-party-game
-idk man we still figure out what use fr
+# Multiplayer Party Game *(MPG)*
+Collection of party games that are multiplayer
