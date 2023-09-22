@@ -1,6 +1,8 @@
 #include <iostream>
 #include <raylib.h>
 
+// Free mind crat 2012
+
 int main()
 {
 	std::cout << "running rn" << std::endl;
