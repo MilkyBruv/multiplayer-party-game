@@ -1,18 +1,15 @@
 # Multiplayer Party Game *(MPG)*
-Collection of party games that are multiplayer
+Collection of party games that are multiplayer (its a multiplayer party game)
 
-## Game ideas:
-- Burgeria (with mccdonalds ambient sounds)
-- Among us voting
+## Ideas:
+- Make a multiplayer party game🤬🤬
+- Some sort of account system to keep track of stats
+- Custom color themes
 
-## Feature ideas:
-- Can change theme color
+## TODO:
+- [x] make repo🤗
 
+## Wireframes and concept art
 
-
-
-
-
-
-
-umm there a paobabyl a heaposof coptright so sorry!
+## Development notes
+- Client should only be reasonable for getting input, rendering/playing sounds, and other simple stuff like that. Everything else will be done on the server side.
