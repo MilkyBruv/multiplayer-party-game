@@ -1,4 +1,4 @@
-package mpg.src.network.shared;
+package mpg.src.shared;
 
 public class Packet {
 

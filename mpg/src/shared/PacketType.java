@@ -1,4 +1,4 @@
-package mpg.src.network.shared;
+package mpg.src.shared;
 
 // TODO: Split up stuff that the client sends and stuff that the server sends into different enums
 public enum PacketType {
