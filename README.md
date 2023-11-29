@@ -35,3 +35,6 @@ Collection of party games that are multiplayer (its a multiplayer party game)
 ## Development notes
 - Client should only be reasonable for getting input, rendering, and playing sounds. Everything else will be done on the server side.
 - Packet order is not guaranteed, so on high priority packets a timestamp may be needed to be sent in-order to establish connection properly.
+
+## Discord server
+You can join the [Discord server](https://discord.gg/kE2F89e9UD) for updates and whatnot.
