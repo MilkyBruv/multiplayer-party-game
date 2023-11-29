@@ -17,6 +17,11 @@ class Game
 		Raylib.SetExitKey(KeyboardKey.KEY_NULL);
 		Raylib.SetTargetFPS(60);
 
+		// Set the icon
+		// TODO: Add resource manager for automatic loading and unloading
+		Image icon = Raylib.LoadImage("./assets/icon.png");
+		Raylib.SetWindowIcon(icon);
+
 		// Main game loop
 		Start();
 		while (!Raylib.WindowShouldClose())
@@ -25,6 +30,10 @@ class Game
 			Render();
 		}
 		CleanUp();
+
+		// TODO: Add resource manager for automatic loading and unloading
+		// TODO: also unload in cleanup()
+		Raylib.UnloadImage(icon);
 	}
 
 	private static void Start()
