@@ -2,6 +2,7 @@ using Raylib_cs;
 
 class Game
 {
+	public static LocalPlayer Player;
 	
 	private static bool paused = false;
 
@@ -38,7 +39,8 @@ class Game
 
 	private static void Start()
 	{
-
+		// Make a new local player (the client)
+		Player = new LocalPlayer(Program.Arguments[0], Program.Arguments[1]);
 	}
 
 	private static void Update()
