@@ -6,7 +6,7 @@ class Program
 	public static void Main(string[] args)
 	{
 		// Check for if the port was added as an argument
-		if (args.Length <= 0)
+		if (args.Length < 1)
 		{
 			Console.WriteLine("\n\nInsufficient arguments provided!\n");
 			Console.WriteLine("arg1: port (uint)");
@@ -17,13 +17,13 @@ class Program
 			return;
 		}
 
-		Start();
+		Start(int.Parse(args[0]));
 	}
 
-	private static void Start()
+	private static void Start(int port)
 	{
 		// Create a thread for the networking stuff
-		Thread networkThread = new Thread(Network.Listen);
+		Thread networkThread = new Thread(() => Network.Listen(port));
 		networkThread.Start();
 
 		// Create a thread for the server logic stuff

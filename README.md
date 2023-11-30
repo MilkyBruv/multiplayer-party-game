@@ -7,6 +7,7 @@ Collection of party games that are multiplayer (its a multiplayer party game)
 - Custom color themes
 - Don't make a game longer than a few minutes
 - Only one player eliminated each game
+- Some games pair you with people to make groups/teams
 
 ## TODO (client)
 - [x] make repo🤗
