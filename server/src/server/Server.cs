@@ -8,7 +8,7 @@ class Server
 		// TODO: Remove while true (ugly and not needed indentation)
 		while (true)
 		{
-			Logger.Log("curren1ly updating");
+			// Logger.Log("curren1ly updating");
 		}
 	}
 }

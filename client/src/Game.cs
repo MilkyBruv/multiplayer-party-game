@@ -1,3 +1,4 @@
+using System.Net;
 using Raylib_cs;
 
 class Game
@@ -6,9 +7,15 @@ class Game
 	
 	private static bool paused = false;
 
+	// Network stuff
+	// TODO: I think we can decrease TPS quite a bit and still get good performance
+	private const float NetworkTPS = 20; 
+	private const float NetworkInterval = 1 / NetworkTPS;
+	private static float networkTimeElapsed = 0;
+
 	public static void Run()
 	{
-		// Initial dimensions
+		// Initial window dimensions
 		const int initial_width = 600;
 		const int initial_height = 500;
 
@@ -39,6 +46,10 @@ class Game
 
 	private static void Start()
 	{
+		// Set the server ip and port
+		Networking.ServerIp = IPAddress.Parse(Program.Arguments[2]);
+		Networking.ServerPort = int.Parse(Program.Arguments[3]);
+
 		// Make a new local player (the client)
 		Player = new LocalPlayer(Program.Arguments[0], Program.Arguments[1]);
 	}
@@ -46,6 +57,14 @@ class Game
 	private static void Update()
 	{
 		// Update stuff that can't be paused
+
+		// Update network dependant on the tps (ticks per second)
+		networkTimeElapsed += Raylib.GetFrameTime();
+		if (networkTimeElapsed >= NetworkInterval)
+		{
+			Console.WriteLine("Networking");
+			networkTimeElapsed -= NetworkInterval;
+		}
 
 		// Update stuff that can be paused
 		if (paused) return;

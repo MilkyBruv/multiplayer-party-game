@@ -1,13 +1,29 @@
+using System.Net;
 using System.Text;
 
 class Packet
 {
-	public virtual void Send()
+	private string packetString;
+
+	// Add another packet to the packet string
+	public virtual void AddPacket(string packet)
 	{
-		
+		packetString += '+' + packetString.Trim();
+	}
+
+	public virtual void Send(IPEndPoint client)
+	{
+		// Encode the packet to bytes for sending
+		byte[] packetBytes = Encoding.ASCII.GetBytes(packetString);
+
+		// Send the packet to the client
+		Network.UdpServer.Send(packetBytes, packetBytes.Length, client);
+		Logger.Log("Sent data to client");
 	}
 }
 
+
+/*
 class FragmentationPacket : Packet
 {
 	// Max recommended bytes to be sent is 1500, however something like 512 is faster
@@ -23,7 +39,7 @@ class FragmentationPacket : Packet
 	List<Byte[]> fragments;
 
 	//! temp packet string (base64 of pfp thats 256x256)
-	// TODO: Make pfps something smaller like 128x128 or even 64x64
+	// TODO: Make pfps 64x64 or maybe something smaller idk
 	// TODO: Remember to add `data:image/png;base64,` at the front (client can do this)
 	private string packetString = "";
 
@@ -50,4 +66,4 @@ class FragmentationPacket : Packet
 			fragments.Add(fragment);
 		}
 	}
-}
+}*/

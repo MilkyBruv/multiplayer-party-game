@@ -27,8 +27,11 @@ class Network
 			string[] packet = receivedPacket.Split(',');
 			PacketType packetType = (PacketType)int.Parse(packet[0]);
 
+			Logger.Log($"Received packet: {string.Join(',', receivedPacket)}");
+
 			// TODO: Check for if its a fragmentation packet, or a regular packet
 			// TODO: Maybe make all packets fragmentation packets.
+			// TODO: Make no packets fragmentation packets if possible
 
 			// Depending on the packet type, handle the packet
 			// TODO: Split up all of this into derived packet classes
@@ -38,7 +41,7 @@ class Network
 				// Client is requesting to join
 				case PacketType.PLAYER_CONNECTION_REQUEST:
 					// TODO: Do this somewhere else
-					responsePacketString = CreatePlayer(packet);
+					responsePacketString = PacketHandler.CreatePlayer(packet);
 					break;
 
 				// Incorrect packet type
@@ -51,31 +54,5 @@ class Network
 			// then compile into a packet and send it back to the player
 
 		}
-	}
-
-
-
-
-
-
-	// TODO: Do somewhere else. A packet handler class or somethng idk !!
-	private static string CreatePlayer(string[] packet)
-	{
-		// Generate a new UUID for the player
-		string uuid = Guid.NewGuid().ToString();
-
-		// Parse the username
-		string username = packet[1];
-		
-		// Parse the pfp (in bytes)
-		byte[] pfpBytes = Encoding.ASCII.GetBytes(packet[2]);
-
-		// Create the player object for the server to interact with
-		Player player = new Player(uuid, username, pfpBytes);
-		Server.Players.Add(player);
-
-		// Create the response packet
-		string responsePacket = $"+{1},{uuid}";
-		return responsePacket;
 	}
 }
