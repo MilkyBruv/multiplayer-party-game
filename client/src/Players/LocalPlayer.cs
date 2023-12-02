@@ -1,3 +1,4 @@
+using System.Text;
 using Raylib_cs;
 
 class LocalPlayer : Player
@@ -18,5 +19,10 @@ class LocalPlayer : Player
 		// 5) Create a "launcher" in something quick and simple like Python for both launching the game with required arguments, and resizing.
 		byte[] pfpBytes = File.ReadAllBytes(pfpPath);
 		PfpBase64 = Convert.ToBase64String(pfpBytes);
+
+
+		//! debug
+		string pfp = Encoding.ASCII.GetString(pfpBytes);
+		Console.WriteLine(pfp);
 	}
 }

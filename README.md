@@ -14,11 +14,8 @@ Collection of party games that are multiplayer (its a multiplayer party game)
 
 ## TODO (server)
 - [x] make repo🤗
-- [ ] Robust packet creation system
-- [ ] Robust packet parsing system
-- [ ] Packet sending system
-- [ ] Packet receiving system
-- [ ] Add packet fragmentation for sending large packets like base64 for pfp
+- [ ] ‼️ Make a way to resend important/high-priority packets
+- [ ] Players can join with a pfp, and username
 
 
 ## Wireframes and concept art

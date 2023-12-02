@@ -4,13 +4,13 @@ using System.Text;
 
 class Network
 {
-	public static UdpClient Server;
+	public static UdpClient UdpServer;
 	public static IPEndPoint ClientEndPoint;
 
 	public static void Listen(int port)
 	{
 		// Make the UDP server and listen for any request
-		Server = new UdpClient(port);
+		UdpServer = new UdpClient(port);
 		ClientEndPoint = new IPEndPoint(IPAddress.Any, 0);
 		Logger.Log($"Server listening on port {port} for requests.");
 
@@ -20,7 +20,7 @@ class Network
 		while (true)
 		{
 			// If we have a client, then receive the packet and decode to string
-			byte[] receivedPacketBytes = Server.Receive(ref ClientEndPoint);
+			byte[] receivedPacketBytes = UdpServer.Receive(ref ClientEndPoint);
 			string receivedPacket = Encoding.ASCII.GetString(receivedPacketBytes);
 			
 			// Parse, and extract the packet type
@@ -58,19 +58,24 @@ class Network
 
 
 
-	// TODO: Do somewhere else
+	// TODO: Do somewhere else. A packet handler class or somethng idk !!
 	private static string CreatePlayer(string[] packet)
 	{
 		// Generate a new UUID for the player
 		string uuid = Guid.NewGuid().ToString();
 
-		// Create the player object for the server to interact with
-		//! Skipping pfp stuff for now, but will add later
-		Player player = new Player(uuid, username, "");
+		// Parse the username
+		string username = packet[1];
+		
+		// Parse the pfp (in bytes)
+		byte[] pfpBytes = Encoding.ASCII.GetBytes(packet[2]);
 
+		// Create the player object for the server to interact with
+		Player player = new Player(uuid, username, pfpBytes);
+		Server.Players.Add(player);
 
 		// Create the response packet
-		string responsePacket = "";
+		string responsePacket = $"+{1},{uuid}";
 		return responsePacket;
 	}
 }

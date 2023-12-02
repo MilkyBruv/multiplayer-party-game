@@ -1,6 +1,6 @@
 class Server
 {
-	public List<Player> Players = new List<Player>();
+	public static List<Player> Players = new List<Player>();
 
 	// Update game stuff here like you would normally do in a single-player game
 	public static void Update()
