@@ -2,7 +2,7 @@
 Packets are "chunks" of information that can be sent between the server, and the client. Normally, the client sends a packet to the server, where it is then re-distributed to all connected clients.
 
 # Packet Structure
-All packets are strings, however they can contain stringified bytes. Multiple packets can be stringed together. To do this, they are separated with a `+`. Individual elements of a packet are split using a `,`.
+All packets are strings, however they can contain stringified bytes. Multiple packets can be stringed together. To do this, they are separated with the string `"|&|"`. Individual elements of a packet are split using this string: `"|+|"`.
 
 ---
 
