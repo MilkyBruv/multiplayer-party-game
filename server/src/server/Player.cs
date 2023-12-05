@@ -2,7 +2,7 @@ using System.Numerics;
 
 class Player
 {
-	public string Name { get; private set; }
+	public string Username { get; private set; }
 	public string Uuid { get; private set; }
 	public byte[] PfpBytes { get; private set; }
 	public Vector2 Position { get; set; }
@@ -13,7 +13,7 @@ class Player
 	{
 		// Set variables
 		Uuid = uuid;
-		Name = name;
+		Username = name;
 		PfpBytes = pfpBytes;
 		Score = 0;
 	}

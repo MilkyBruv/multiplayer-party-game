@@ -24,10 +24,10 @@ class Network
 			string receivedPacket = Encoding.ASCII.GetString(receivedPacketBytes);
 			
 			// Parse, and extract the packet type
-			string[] packet = receivedPacket.Split(',');
+			string[] packet = receivedPacket.Split("|+|");
 			PacketType packetType = (PacketType)int.Parse(packet[0]);
 
-			Logger.Log($"Received packet: {string.Join(',', receivedPacket)}");
+			Logger.Log($"\n\nReceived packet: {string.Join('\n', receivedPacket)}");
 
 			// TODO: Check for if its a fragmentation packet, or a regular packet
 			// TODO: Maybe make all packets fragmentation packets.
@@ -35,13 +35,13 @@ class Network
 
 			// Depending on the packet type, handle the packet
 			// TODO: Split up all of this into derived packet classes
-			string responsePacketString;
+			Packet responsePacket;
 			switch (packetType)
 			{
 				// Client is requesting to join
 				case PacketType.PLAYER_CONNECTION_REQUEST:
 					// TODO: Do this somewhere else
-					responsePacketString = PacketHandler.CreatePlayer(packet);
+					responsePacket = PacketHandler.CreatePlayer(packet);
 					break;
 
 				// Incorrect packet type
