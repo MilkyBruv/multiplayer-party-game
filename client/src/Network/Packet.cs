@@ -8,7 +8,7 @@ class Packet
 	// Add another packet to the packet string
 	public virtual void AddPacket(PacketType packetType, params string[] packet)
 	{
-		packetString += $"{(int)packetType},{string.Join('m', packet)}+";
+		packetString += $"{(int)packetType}|+|{string.Join("|+|", packet)}|&|";
 		Console.WriteLine(packetString);
 	}
 
