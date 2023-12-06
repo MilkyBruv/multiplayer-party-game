@@ -10,8 +10,8 @@ enum PacketType
 	PLAYER_DISCONNECTION,         // Client
 }
 
-enum PacketStatus
+enum PacketPriority
 {
-	ACCEPTED, // Also used for if there is no status required
-	DENIED
+	EXPENDABLE, // For when it doesn't matter if a packet is lost
+	HIGH        // For when the data must get through 100% of the time
 }

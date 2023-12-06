@@ -16,10 +16,13 @@ class Networking
 		Server = new IPEndPoint(ServerIp, ServerPort);
 
 		// Make the connection packet, then send it
-		Packet packet = new Packet();
+		Packet packet = new HighPriorityPacket();
 		packet.AddPacket(PacketType.PLAYER_CONNECTION_REQUEST, username, pfpString);
 		packet.Send();
 
-		//TODO: Get the players UUID from response
+
+		// Get the players UUID from response
+		//! Only do this here as a 1 off because the response is unique without UUID
+		// TODO: Ensure packets are delivered
 	}
 }
