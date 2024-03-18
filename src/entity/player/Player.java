@@ -1,11 +1,11 @@
-package main;
+package entity.player;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import com.raylib.Raylib.Texture;
 import com.raylib.Raylib.Vector2;
 
-import main.assets.Assets;
+import asset.Assets;
 
 public class Player {
 
@@ -33,10 +33,10 @@ public class Player {
 		if (!Raylib.IsGamepadAvailable(controllerIndex)) return;
 
 		// Get input
-		float xAxis = Raylib.GetGamepadAxisMovement(controllerIndex, 0);
-		float yAxis = Raylib.GetGamepadAxisMovement(controllerIndex, 1);
+		// float xAxis = 
+		// float yAxis = 
 
-		position += 1;
+		// position += 1;
 
 		// this.x += (this.speed * this.xAxis);
 		// this.y += (this.speed * this.yAxis);

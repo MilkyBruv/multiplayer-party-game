@@ -1,4 +1,4 @@
-package main;
+package entity.player;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;

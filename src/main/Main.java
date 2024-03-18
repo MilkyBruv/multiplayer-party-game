@@ -3,14 +3,14 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import com.raylib.Jaylib.Color;
 import com.raylib.Jaylib.Rectangle;
-import com.raylib.Jaylib.Vector2;
-import com.raylib.Raylib.Texture;
 
-import main.assets.Assets;
+import asset.Assets;
+import asset.AssetManager;
+import entity.player.Player;
+import entity.player.PlayerHandler;
 
 public class Main
 {
@@ -114,7 +114,7 @@ public class Main
 	private static void cleanUp() {
 		
 		// Unload all the assets
-		Assets.unloadAssets();
+		AssetManager.unloadAll();
 
 		// Close the raylib window
 		//! Do this last
