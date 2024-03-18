@@ -31,7 +31,7 @@ public abstract class Assets {
 	public static Music music;
 
 	// Load all the assets
-	public static final void loadAssets() {
+	protected static final void loadAssets() {
 
 		player = AssetManager.loadTexture("player.png");
 

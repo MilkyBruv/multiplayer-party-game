@@ -74,6 +74,12 @@ public abstract class AssetManager {
 
     }
 
+    public static final void loadAll() {
+
+        Assets.loadAssets();
+
+    }
+
 
 
     // Unload content

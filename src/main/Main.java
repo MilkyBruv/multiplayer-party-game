@@ -48,7 +48,7 @@ public class Main
 	private static void start() {
 
 		// Load in all the assets
-		Assets.loadAssets();
+		AssetManager.loadAll();
 
 		// Music
 		Raylib.PlayMusicStream(Assets.music);
