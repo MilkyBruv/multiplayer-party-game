@@ -8,13 +8,13 @@
 
             "files": [
 
-                "src/main/Main.java"
+                "src/main/*.java"
 
             ],
 
             "dependencies": [
 
-
+                "lib/jaylib-4.5.0-0.jar"
 
             ],
 
