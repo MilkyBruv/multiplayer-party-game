@@ -35,10 +35,10 @@ public class Player {
     // Instance stuff
     public int x = 0;
     public int y = 0;
-    public int width = 64;
-    public int height = 64;
+    public int width = 256;
+    public int height = 256;
     public int num;
-    public final float speed = 2f;
+    public final float speed = 5f;
     public Texture texture = null;
 
     private float xAxis = 0f;
@@ -47,6 +47,7 @@ public class Player {
     public Player(int num, Texture texture) {
 
         this.num = num;
+        this.texture = texture;
         this.texture.width(this.width);
         this.texture.height(this.height);
 
@@ -61,10 +62,12 @@ public class Player {
             this.xAxis = Raylib.GetGamepadAxisMovement(this.num, 0);
             this.yAxis = Raylib.GetGamepadAxisMovement(this.num, 1);
 
-        }
+            System.out.println(Raylib.GetGamepadAxisCount(this.num));
 
-        this.x += this.speed * this.xAxis * Raylib.GetFrameTime();
-        this.y += this.speed * this.yAxis * Raylib.GetFrameTime();
+            this.x += (this.speed * this.xAxis);
+            this.y += (this.speed * this.yAxis);
+
+        }
 
     }
 
