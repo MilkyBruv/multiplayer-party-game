@@ -15,11 +15,6 @@ import entity.player.PlayerHandler;
 
 public class Main
 {
-
-	private static boolean isGamepad0Connected = false;
-	private static boolean isGamepad1Connected = false;
-	private static final List<Player> players = new ArrayList<Player>() {};
-
 	private static boolean shutUp = true;
 
 	public static void main(String[] args) {
@@ -27,7 +22,7 @@ public class Main
 		// Make the raylib window
 		Raylib.SetConfigFlags(Raylib.FLAG_WINDOW_ALWAYS_RUN);
 		Raylib.SetConfigFlags(Raylib.FLAG_WINDOW_RESIZABLE);
-		Raylib.InitWindow(400, 300, "mpg");
+		Raylib.InitWindow(854, 480, "mpg");
 		Raylib.InitAudioDevice();
 		Raylib.SetTargetFPS(144);
 
@@ -63,27 +58,7 @@ public class Main
 		
 		if (shutUp == false) Raylib.UpdateMusicStream(Assets.music);
 
-		/*
-		if (Raylib.IsGamepadAvailable(0) && !isGamepad0Connected) {
-
-			if (Raylib.IsGamepadButtonDown(0, Raylib.GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
-
-				players.add(Player.initPlayer(Assets.player));
-				isGamepad0Connected = true;
-
-			}
-
-		} if (Raylib.IsGamepadAvailable(1) && !isGamepad1Connected) {
-
-			if (Raylib.IsGamepadButtonDown(1, Raylib.GAMEPAD_BUTTON_RIGHT_FACE_DOWN)) {
-
-				players.add(Player.initPlayer(Assets.player));
-				isGamepad1Connected = true;
-
-			}
-		}
-		*/
-
+		// Update and add new players
 		PlayerHandler.update();
 	}
 
@@ -94,14 +69,11 @@ public class Main
 		Raylib.BeginDrawing();
 		Raylib.ClearBackground(new Color(0, 0, 255, 255));
 
+		
+		// Draw all the players and their information
 		PlayerHandler.render();
 
-
-		//! debug texture test thing
-		Raylib.DrawTexture(Assets.controllerDownX, 0, 0, Jaylib.WHITE);
-		Raylib.DrawTexture(Assets.controllerDownP, 0, 180, Jaylib.WHITE);
-
-
+		
 		Raylib.EndDrawing();
 	}
 

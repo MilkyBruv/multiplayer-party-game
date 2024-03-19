@@ -10,7 +10,7 @@ import asset.Assets;
 public class Player {
 
 	// Instance stuff
-	public Vector2 position;
+	public Vector2 position = new Vector2(0);
 	public int width = 256;
 	public int height = 256;
 	public int controllerIndex;
@@ -19,10 +19,13 @@ public class Player {
 
 	public Player(int controller) {
 
+		
 		controllerIndex = controller;
 		this.texture = Assets.player;
 		this.texture.width(this.width);
 		this.texture.height(this.height);
+
+		System.out.println("Adding a new player with controller index of " + controllerIndex);
 	}
 
 
