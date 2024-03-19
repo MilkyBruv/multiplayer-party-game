@@ -40,15 +40,15 @@ public abstract class Assets {
 		raft2 = AssetManager.loadTexture("raft2");
 		water = AssetManager.loadTexture("water");
 		
-		controllerLeftX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "x_xbox");
-		controllerRightX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "b_xbox");
-		controllerUpX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "y_xbox");
-		controllerDownX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "a_xbox");
+		controllerLeftX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "left_x");
+		controllerRightX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "right_x");
+		controllerUpX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "up_x");
+		controllerDownX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "down_x");
 
-		controllerLeftP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "square_ps");
-		controllerRightP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "circle_ps");
-		controllerUpP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "triangle_ps");
-		controllerDownP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "x_ps");
+		controllerLeftP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "left_p");
+		controllerRightP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "right_p");
+		controllerUpP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "up_p");
+		controllerDownP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "down_p");
 		
 		music = AssetManager.loadMusic("music");
 
