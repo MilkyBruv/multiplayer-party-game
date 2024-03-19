@@ -78,7 +78,7 @@ public final class Vector2f {
 
     public final Vector2f normalize() {
 
-        float invLength = VMath.fastInvSqrt(this.x * this.x + this.y * this.y);
+        float invLength = Vector2f.fastInvSqrt(this.x * this.x + this.y * this.y);
         this.x = this.x * invLength;
         this.y = this.y * invLength;
 
@@ -136,38 +136,6 @@ public final class Vector2f {
 
 
 
-    public final Vector2f sub(int val) {
-
-        return new Vector2f(this.x - val, this.y - val);
-
-    }
-
-
-
-    public final Vector2f add(int val) {
-
-        return new Vector2f(this.x + val, this.y + val);
-
-    }
-
-
-
-    public final Vector2f mul(int val) {
-
-        return new Vector2f(this.x * val, this.y * val);
-
-    }
-
-
-
-    public final Vector2f div(int val) {
-
-        return new Vector2f(this.x / val, this.y / val);
-
-    }
-
-
-
     public final Vector2f sub(float val) {
 
         return new Vector2f(Math.round(this.x - val), Math.round(this.y - val));
@@ -200,65 +168,66 @@ public final class Vector2f {
 
 
 
-    public final Vector2f sub(double val) {
+    public final Vector2f sub(float x, float y) {
 
-        return new Vector2f((int) Math.round(this.x - val), (int) Math.round(this.y - val));
-
-    }
-
-
-
-    public final Vector2f add(double val) {
-
-        return new Vector2f((int) Math.round(this.x + val), (int) Math.round(this.y + val));
+        return new Vector2f(Math.round(this.x - x), Math.round(this.y - y));
 
     }
 
 
 
-    public final Vector2f mul(double val) {
+    public final Vector2f add(float x, float y) {
 
-        return new Vector2f((int) Math.round(this.x * val), (int) Math.round(this.y * val));
-
-    }
-
-
-
-    public final Vector2f div(double val) {
-
-        return new Vector2f((int) Math.round(this.x / val), (int) Math.round(this.y / val));
+        return new Vector2f(Math.round(this.x + x), Math.round(this.y + y));
 
     }
 
 
 
-    public final Vector2f sub(long val) {
+    public final Vector2f mul(float x, float y) {
 
-        return new Vector2f((int) Math.round(this.x - val), (int) Math.round(this.y - val));
-
-    }
-
-
-
-    public final Vector2f add(long val) {
-
-        return new Vector2f((int) Math.round(this.x + val), (int) Math.round(this.y + val));
+        return new Vector2f(Math.round(this.x * x), Math.round(this.y * y));
 
     }
 
 
 
-    public final Vector2f mul(long val) {
+    public final Vector2f div(float x, float y) {
 
-        return new Vector2f((int) Math.round(this.x * val), (int) Math.round(this.y * val));
+        return new Vector2f(Math.round(this.x / x), Math.round(this.y / y));
 
     }
 
 
 
-    public final Vector2f div(long val) {
+    public static final float fastInvSqrt(float n) {
 
-        return new Vector2f((int) Math.round(this.x / val), (int) Math.round(this.y / val));
+        float nhalf = 0.5f * n;
+        int i = Float.floatToIntBits(n);
+
+        i = 0x5f3759df - (i >> 1);
+        n = Float.intBitsToFloat(i);
+        n *= (1.5f - nhalf * n * n);
+
+        return n;
+
+    }
+
+
+
+    public final void rotateAroundVector(Vector2f cent, float angle) {
+
+        Vector2f c = cent;
+        float a = (float) Math.toRadians(angle);
+
+        Vector2f newVec = new Vector2f(
+
+            (int) Math.round(((this.x - c.x) * Math.cos(a)) - ((c.y - this.y) * Math.sin(a)) + c.x),
+            (int) Math.round(((c.y - this.y) * Math.cos(a)) + ((this.x - c.x) * Math.sin(a)) + c.y)
+
+        );
+
+        this.set(newVec.x, newVec.y);
 
     }
 
