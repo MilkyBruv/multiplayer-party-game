@@ -8,7 +8,10 @@
 
             "files": [
 
-                "src/main/*.java"
+                "src/asset/*.java",
+                "src/entity/player/*.java",
+                "src/main/*.java",
+                "src/vector/*.java"
 
             ],
 

@@ -6,11 +6,13 @@ import com.raylib.Raylib.Texture;
 import com.raylib.Raylib.Vector2;
 
 import asset.Assets;
+import vector.Vector2f;
 
 public class Player {
 
 	// Instance stuff
 	public Vector2 position = new Vector2(0);
+	public Vector2f movement = new Vector2f(0f, 0f);
 	public int width = 256;
 	public int height = 256;
 	public int controllerIndex;
@@ -36,14 +38,15 @@ public class Player {
 		if (!Raylib.IsGamepadAvailable(controllerIndex)) return;
 
 		// Get input
-		// float xAxis = 
-		// float yAxis = 
+		this.movement.set(
 
-		// position += 1;
+			Raylib.GetGamepadAxisMovement(this.controllerIndex, 0) * this.speed,
+			Raylib.GetGamepadAxisMovement(this.controllerIndex, 1) * this.speed
 
-		// this.x += (this.speed * this.xAxis);
-		// this.y += (this.speed * this.yAxis);
+		);
 
+		this.position.x(this.position.x() + this.movement.x);
+		this.position.y(this.position.y() + this.movement.y);
 
 	}
 
@@ -52,13 +55,18 @@ public class Player {
 	public final void update() {
 
 		getInput();
+
+		// System.out.println(this.position.x() + ", " + this.position.y());
+		System.out.println(Raylib.GetGamepadAxisMovement(this.controllerIndex, 0) + ", " + Raylib.GetGamepadAxisMovement(this.controllerIndex, 1));
+
 	}
 
 
 
 	public final void render() {
 
-		Raylib.DrawTextureV(texture, position, Jaylib.WHITE);
+		Raylib.DrawTextureV(this.texture, this.position, Jaylib.WHITE);
+
 	}
 
 }
