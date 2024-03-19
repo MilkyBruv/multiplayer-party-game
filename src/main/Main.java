@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import com.raylib.Jaylib.Color;
 import com.raylib.Jaylib.Rectangle;
@@ -95,18 +96,13 @@ public class Main
 
 		PlayerHandler.render();
 
+
+		//! debug texture test thing
+		Raylib.DrawTexture(Assets.controllerDownX, 0, 0, Jaylib.WHITE);
+		Raylib.DrawTexture(Assets.controllerDownP, 0, 180, Jaylib.WHITE);
+
+
 		Raylib.EndDrawing();
-
-		// Join button
-		// TODO: Don't do this
-		int y = Raylib.GetScreenHeight() - 50;
-		Rectangle source = new Rectangle(0, 0, 180, 180);
-
-		// Raylib.DrawText("press", 20, y, 35, Jaylib.WHITE);
-		// Raylib.DrawTexturePro(connectButtonXbox, source, new Rectangle(130, y, 35, 35), new Vector2(0, 0), 0, Jaylib.WHITE);
-		// Raylib.DrawText("or", 180, y, 35, Jaylib.WHITE);
-		// Raylib.DrawTexturePro(connectButtonPlayStation, source, new Rectangle(240, y, 35, 35), new Vector2(0, 0), 0, Jaylib.WHITE);
-		// Raylib.DrawText("to join", 300, y, 35, Jaylib.WHITE);
 	}
 
 

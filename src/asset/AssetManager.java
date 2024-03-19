@@ -11,9 +11,14 @@ import com.raylib.Raylib.Texture;
 public abstract class AssetManager {
 
     private static boolean isVerbose = false;
-    private static final String TEXTURE_PATH = "./res/texture/";
-    private static final String SOUND_MUSIC_PATH = "./res/sound/";
-    public static final String CONTROLLER_TEXTURE_PATH = "./res/texture/controller/";
+    public static final String TEXTURE_PATH = "./res/texture/";
+    public static final String SOUND_MUSIC_PATH = "./res/sound/";
+    public static final String CONTROLLER_TEXTURE_PATH = "controller/";
+    
+    public static final String TEXTURE_EXTENSION = ".png";
+    public static final String AUDIO_EXTENSION = ".wav";
+
+
     private static final List<Texture> TEXTURES = new ArrayList<Texture>() {};
     private static final List<Sound> SOUNDS = new ArrayList<Sound>() {};
     private static final List<Music> MUSIC = new ArrayList<Music>() {};
@@ -26,7 +31,7 @@ public abstract class AssetManager {
 
         if (!TEXTURES.contains(texture)) { 
             
-            TEXTURES.add(Raylib.LoadTexture(TEXTURE_PATH + filename));
+            TEXTURES.add(Raylib.LoadTexture(TEXTURE_PATH + filename + TEXTURE_EXTENSION));
             return TEXTURES.get(TEXTURES.size() - 1);
 
         }
@@ -40,7 +45,7 @@ public abstract class AssetManager {
 
     public static final Sound loadSound(String filename) {
 
-        Sound sound = Raylib.LoadSound(SOUND_MUSIC_PATH + filename);
+        Sound sound = Raylib.LoadSound(SOUND_MUSIC_PATH + filename + AUDIO_EXTENSION);
 
         if (!SOUNDS.contains(sound)) { 
             
@@ -58,7 +63,7 @@ public abstract class AssetManager {
 
     public static final Music loadMusic(String filename) {
 
-        Music music = Raylib.LoadMusicStream(SOUND_MUSIC_PATH + filename);
+        Music music = Raylib.LoadMusicStream(SOUND_MUSIC_PATH + filename + AUDIO_EXTENSION);
 
         if (!MUSIC.contains(music)) { 
             

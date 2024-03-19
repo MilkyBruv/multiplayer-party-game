@@ -33,24 +33,24 @@ public abstract class Assets {
 	// Load all the assets
 	protected static final void loadAssets() {
 
-		player = AssetManager.loadTexture("player.png");
+		player = AssetManager.loadTexture("player");
 
-		raft0 = AssetManager.loadTexture("raft0.png");
-		raft1 = AssetManager.loadTexture("raft1.png");
-		raft2 = AssetManager.loadTexture("raft2.png");
-		water = AssetManager.loadTexture("water.png");
+		raft0 = AssetManager.loadTexture("raft0");
+		raft1 = AssetManager.loadTexture("raft1");
+		raft2 = AssetManager.loadTexture("raft2");
+		water = AssetManager.loadTexture("water");
 		
-		controllerLeftX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "x_xbox.png");
-		controllerRightX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "b_xbox.png");
-		controllerUpX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "y_xbox.png");
-		controllerDownX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "a_xbox.png");
+		controllerLeftX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "x_xbox");
+		controllerRightX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "b_xbox");
+		controllerUpX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "y_xbox");
+		controllerDownX = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "a_xbox");
 
-		controllerLeftP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "square_ps.png");
-		controllerRightP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "circle_ps.png");
-		controllerUpP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "triangle_ps.png");
-		controllerDownP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "x_ps.png");
+		controllerLeftP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "square_ps");
+		controllerRightP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "circle_ps");
+		controllerUpP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "triangle_ps");
+		controllerDownP = AssetManager.loadTexture(AssetManager.CONTROLLER_TEXTURE_PATH + "x_ps");
 		
-		music = AssetManager.loadMusic("music.wav");
+		music = AssetManager.loadMusic("music");
 
 	}
 }
