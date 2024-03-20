@@ -2,6 +2,10 @@ package entity.player;
 
 import com.raylib.Jaylib;
 import com.raylib.Raylib;
+import com.raylib.Jaylib.Vector2;
+
+import util.Colors;
+import util.TextUtils;
 
 public class PlayerHandler {
 	
@@ -42,10 +46,12 @@ public class PlayerHandler {
 
 		}
 
-		// Show a connection prompt
-		// TODO: Use button images
-		// Raylib.DrawText("Press A/X to connect", 10, 10, 35, Jaylib.WHITE);
-		
+		// Show a connection prompt if there is
+		// spaces left for a player to join
+		if (getConnectedPLayers() < maxPlayers)
+		{
+			TextUtils.drawTextWithController("Press <down_x> or <down_p> to join\n" + getConnectedPLayers() + "/" + maxPlayers, new Vector2(0, 0), 35, Colors.PURPLE);
+		}
 	}
 
 
@@ -71,5 +77,17 @@ public class PlayerHandler {
 			connectedControllers[i] = true;
 			players[i] = new Player(i);
 		}
+	}
+
+	// Get how many controllers/players are connected rn
+	public static int getConnectedPLayers() {
+
+		int connectedPlayers = 0;
+		for (int i = 0; i < maxPlayers; i++) {
+			
+			if (connectedControllers[i]) connectedPlayers++;
+		}
+
+		return connectedPlayers;
 	}
 }

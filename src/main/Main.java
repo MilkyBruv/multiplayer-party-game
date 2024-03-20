@@ -7,11 +7,14 @@ import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import com.raylib.Jaylib.Color;
 import com.raylib.Jaylib.Rectangle;
+import com.raylib.Jaylib.Vector2;
 
 import asset.Assets;
 import asset.AssetManager;
 import entity.player.Player;
 import entity.player.PlayerHandler;
+import util.Colors;
+import util.TextUtils;
 
 public class Main
 {
@@ -72,9 +75,6 @@ public class Main
 		
 		// Draw all the players and their information
 		PlayerHandler.render();
-
-		//! debug
-		Utils.DrawTextWithController("Press <down_x> or <down_p> to join", 10, 10, 35);
 		
 		Raylib.EndDrawing();
 	}

@@ -6,7 +6,7 @@ import com.raylib.Raylib.Texture;
 import com.raylib.Raylib.Vector2;
 
 import asset.Assets;
-import main.Utils;
+import util.TextUtils;
 import vector.Vector2f;
 
 public class Player {
