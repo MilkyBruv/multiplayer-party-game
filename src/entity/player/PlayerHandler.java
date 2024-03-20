@@ -44,7 +44,7 @@ public class PlayerHandler {
 
 		// Show a connection prompt
 		// TODO: Use button images
-		Raylib.DrawText("Press A/X to connect", 10, 10, 35, Jaylib.WHITE);
+		// Raylib.DrawText("Press A/X to connect", 10, 10, 35, Jaylib.WHITE);
 		
 	}
 

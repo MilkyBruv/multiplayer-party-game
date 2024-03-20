@@ -73,6 +73,8 @@ public class Main
 		// Draw all the players and their information
 		PlayerHandler.render();
 
+		//! debug
+		Utils.DrawTextWithController("Press <down_x> or <down_p> to join", 10, 10, 35);
 		
 		Raylib.EndDrawing();
 	}

@@ -6,6 +6,7 @@ import com.raylib.Raylib.Texture;
 import com.raylib.Raylib.Vector2;
 
 import asset.Assets;
+import main.Utils;
 import vector.Vector2f;
 
 public class Player {
@@ -67,6 +68,7 @@ public class Player {
 
 		Raylib.DrawTextureV(this.texture, this.position, Jaylib.WHITE);
 
+		// Utils.DrawTextWithController("Press <down_x> or <down_ps> to join", 10, 10, 35);
 	}
 
 }
