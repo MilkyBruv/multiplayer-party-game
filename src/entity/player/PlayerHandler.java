@@ -31,7 +31,6 @@ public class PlayerHandler {
 			
 			if (player == null) continue;
 			player.update();
-
 		}
 
 	}
@@ -43,14 +42,16 @@ public class PlayerHandler {
 			
 			if (player == null) continue;
 			player.render();
-
 		}
+
+		// Show all of the connected players
+		Raylib.DrawText((getConnectedPLayers() + "/" + maxPlayers + " connected"), 10, 10, 35, Colors.WHITE);
 
 		// Show a connection prompt if there is
 		// spaces left for a player to join
 		if (getConnectedPLayers() < maxPlayers)
 		{
-			TextUtils.drawTextWithController("Press <down_x> or <down_p> to join\n" + getConnectedPLayers() + "/" + maxPlayers, new Vector2(0, 0), 35, Colors.PURPLE);
+			TextUtils.drawTextWithController("Press <down_x> or <down_p> to join", new Vector2(10, Raylib.GetScreenHeight() - 10 - 35), 35, Colors.WHITE);
 		}
 	}
 

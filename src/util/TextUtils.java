@@ -3,7 +3,6 @@ package util;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.raylib.Jaylib;
 import com.raylib.Raylib;
 import com.raylib.Jaylib.Color;
 import com.raylib.Jaylib.Rectangle;
@@ -15,8 +14,9 @@ import asset.Assets;
 public abstract class TextUtils {
 
 	// Lookup table for controller and its string counterpart
-	private static final Map<String, Texture> controllerTextureMap = new HashMap<String, Texture>() {};
+	private static final Map<String, Texture> controllerTextureMap = new HashMap<String, Texture>();
 	
+	// Map all the controller thingys
 	static {
 
 		controllerTextureMap.put("up_x", Assets.controllerUpX);
@@ -36,12 +36,15 @@ public abstract class TextUtils {
 	// on xbox or playstation.
 	// Example for xbox: "Press <down_x> to jump"
 	// Example for playstation: "Press <down_p> to jump"
-	// TODO: Color parameter
-	public static void drawTextWithController(String text, Vector2 pos, int fontSize, Color color) {
+	// TODO: Support newlines (startwith or endswith) x = pos.x;
+	public static void drawTextWithController(String text, Vector2 position, int fontSize, Color color) {
+
+		// Get the width of a space
+		int spaceWidth = Raylib.MeasureText(" ", fontSize);
 
 		// Loop through every word in the text. Find the
 		// words, and controller inputs and handle them.
-		int x = (int) pos.x();
+		int x = (int) position.x();
 		for (String word : text.split(" ")) {
 			
 			// Check for if the word has angle brackets
@@ -55,24 +58,26 @@ public abstract class TextUtils {
 				Texture controllerTexture = controllerTextureMap.get(word);
 				
 				// Draw the controller input texture
-				int space = fontSize / 3;
 				Rectangle source = new Rectangle(0, 0, controllerTexture.width(), controllerTexture.height());
-				Rectangle destination = new Rectangle(x + space, pos.y(), fontSize, fontSize);
+				Rectangle destination = new Rectangle(x, position.y(), fontSize, fontSize);
 				Raylib.DrawTexturePro(controllerTexture, source, destination, new Vector2(0, 0), 0f, new Color(255, 255, 255, 255));
 
 				// Increase the x value to add the width of the button
-				x += space + fontSize + space;
+				x += fontSize;
 
-				// Skip the current iteration because
-				// we've already done all the work
-				continue;
+			} else {
+
+				// Draw the word normally
+				Raylib.DrawText(word, (int) x, (int) position.y(), fontSize, color);
+
+				// Add on the new x position
+				x += Raylib.MeasureText(word, fontSize);
 			}
 
-			// Draw the word normally
-			Raylib.DrawText(word, (int) x, (int) pos.y(), fontSize, color);
-
-			// Add on the new x position
-			x += Raylib.MeasureText(word, fontSize);
+			// Add a space onto the end of the word
+			// (assuming every word has a space after it)
+			// TODO: Preserve spaces
+			x += spaceWidth;
 		}
 	}
 
