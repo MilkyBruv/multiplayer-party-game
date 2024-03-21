@@ -4,6 +4,7 @@ class Program
 {
 	public static void Main(string[] args)
 	{
-		Console.WriteLine(Raylib.RAYLIB_VERSION);
+		// Walk the game😂😂😂🤣
+		Game.Run();
 	}
 }
