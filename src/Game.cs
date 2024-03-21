@@ -23,6 +23,8 @@ class Game
 
 	private static void Start()
 	{
+		Assets.LoadAssets();
+
 		PlayerHandler.Start();
 	}
 
@@ -47,6 +49,7 @@ class Game
 
 	private static void CleanUp()
 	{
+		AssetManager.UnloadAssets();
 		
 		// Close the raylib window
 		//! Make sure this is always done last

@@ -14,7 +14,7 @@ class Player
 		// Assign a heap of stuff
 		// TODO: Use asset manager
 		ControllerIndex = controllerIndex;
-		texture = Raylib.LoadTexture("./assets/texture/player.png");
+		texture = Assets.Player;
 
 		Console.WriteLine($"Player with controller index {ControllerIndex} registered!!");
 	}
