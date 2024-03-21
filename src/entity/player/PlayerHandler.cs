@@ -1,3 +1,4 @@
+using System.Numerics;
 using Raylib_cs;
 
 class PlayerHandler
@@ -35,6 +36,8 @@ class PlayerHandler
 			if (player == null) continue;
 			player.Render();
 		}
+
+		TextUtils.DrawTextWithControllerInputs("Press <down_x> or <down_p> to join", new Vector2(10f, Raylib.GetScreenHeight() - 10f - 25f), 25, Color.White);
 	}
 
 
