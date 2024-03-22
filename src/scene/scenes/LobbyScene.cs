@@ -8,9 +8,11 @@ class LobbyScene : Scene
 
 	public override void Start()
 	{
-		// Make the ready up button
-		//? Btw milky if you wanna call an Action with parameters and stuff put it in a lambda
+		// Make the ready up button and have it automatically
+		// selected because this is the only UI element in the scene
 		readyUpButton = new Button("Ready Up", StartNewGame, new Vector2(250, 150), new Vector2(300, 75), 50f);
+		readyUpButton.Selected = true;
+		readyUpButton.Disabled = true;
 	}
 
 	public override void Update()
