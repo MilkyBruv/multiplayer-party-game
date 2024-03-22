@@ -28,8 +28,7 @@ class Game
 		PlayerHandler.Start();
 
 		// Start the game off in the lobby
-		SceneManager.CurrentScene = new LobbyScene();
-
+		SceneManager.SetScene(new LobbyScene());
 	}
 
 	private static void Update()

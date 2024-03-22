@@ -1,8 +1,19 @@
-// TODO: Put this all in Game.cs because this not really doing anything
-
 class SceneManager
 {
-	public static Scene CurrentScene { get; set; }
+	public static Scene CurrentScene { get; private set; }
+
+	public static void SetScene(Scene scene)
+	{
+		// Run the previous scenes clean method
+		//? question mark just does a null check
+		CurrentScene?.CleanUp();
+
+		// Set the new scene and run its start method
+		CurrentScene = scene;
+		CurrentScene.Start();
+	}
+
+
 
 	public static void Update()
 	{
