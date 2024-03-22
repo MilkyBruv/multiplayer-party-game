@@ -17,9 +17,6 @@ class PlayerHandler
 
 	public static void Update()
 	{
-		// Check for if a new controller/player joins
-		ConnectNewPlayers();
-
 		// Update all the players
 		foreach (Player player in Players)
 		{
@@ -42,7 +39,7 @@ class PlayerHandler
 
 
 	// Check for if a new controller/player joins
-	private static void ConnectNewPlayers()
+	public static void ConnectNewPlayers()
 	{
 		// Loop through all the controller slots
 		for (int i = 0; i < connectedControllers.Length; i++)

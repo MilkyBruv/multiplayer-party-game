@@ -23,14 +23,18 @@ class Game
 
 	private static void Start()
 	{
+		// Setup type stuff
 		Assets.LoadAssets();
-
 		PlayerHandler.Start();
+
+		// Start the game off in the lobby
+		SceneManager.CurrentScene = new LobbyScene();
+
 	}
 
 	private static void Update()
 	{
-		PlayerHandler.Update();
+		SceneManager.Update();
 	}
 
 	private static void Render()
@@ -39,9 +43,7 @@ class Game
 		Raylib.ClearBackground(Color.Magenta);
 
 
-
-		PlayerHandler.Render();
-
+		SceneManager.Render();
 
 
 		Raylib.EndDrawing();
