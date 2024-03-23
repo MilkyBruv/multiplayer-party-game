@@ -7,22 +7,29 @@
             "task": "main",
 
             "files": [
-
-                "src/asset/*.java",
-                "src/entity/player/*.java",
+        
+                "src/common/*.java",
+                "src/event/*.java",
+                "src/game/*.java",
+                "src/gfx/*.java",
                 "src/main/*.java",
-                "src/vector/*.java"
-
+                "src/shader/*.java"
+        
             ],
-
+        
             "dependencies": [
-
-                "lib/jaylib-4.5.0-0.jar"
-
+        
+                "lib/gluegen-rt-natives-windows-amd64.jar",
+                "lib/gluegen-rt.jar",
+                "lib/joal-natives-windows-amd64.jar",
+                "lib/joal.jar",
+                "lib/jogl-all-natives-windows-amd64.jar",
+                "lib/jogl-all.jar"
+        
             ],
-
-            "natives": "lib/natives",
-
+        
+            "natives": "natives",
+        
             "classfiles": "bin"
 
         }

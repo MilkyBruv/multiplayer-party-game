@@ -1,94 +1,128 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.jogamp.newt.opengl.GLWindow;
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLProfile;
 
-import com.raylib.Jaylib;
-import com.raylib.Raylib;
-import com.raylib.Jaylib.Color;
-import com.raylib.Jaylib.Rectangle;
-import com.raylib.Jaylib.Vector2;
+import event.KeyEventListener;
+import event.MouseEventListener;
+import event.RenderEventListener;
+import event.WindowEventListener;
+import game.GameEventManager;
 
-import asset.Assets;
-import asset.AssetManager;
-import entity.player.Player;
-import entity.player.PlayerHandler;
-import util.Colors;
-import util.TextUtils;
+public final class Main implements Runnable {
 
-public class Main
-{
-	private static boolean shutUp = true;
+    private static final int FPS = 60;
+    public static double delta = 0;
 
-	public static void main(String[] args) {
+    private static final GLProfile GL_PROFILE = GLProfile.get(GLProfile.GL4);
+    private static final GLCapabilities GL_CAPABILITIES = new GLCapabilities(GL_PROFILE);
+    private static final GLWindow GL_WINDOW = GLWindow.create(GL_CAPABILITIES);
+    private static Thread thread;
+    private static GameEventManager game;
 
-		// Make the raylib window
-		Raylib.SetConfigFlags(Raylib.FLAG_WINDOW_ALWAYS_RUN);
-		Raylib.SetConfigFlags(Raylib.FLAG_WINDOW_RESIZABLE);
-		Raylib.InitWindow(854, 480, "mpg");
-		Raylib.InitAudioDevice();
-		Raylib.SetTargetFPS(144);
+    public static void main(String[] args) {
 
-		// Main game loop
-		start();
+        init();
 
-		while (!Raylib.WindowShouldClose()) {
-			
-			update();
-			render();
-		}
-
-		cleanUp();
-
-	}
+    }
 
 
 
-	private static void start() {
+    private static final void init() {
 
-		// Load in all the assets
-		AssetManager.loadAll();
+        setSystemProperties();
 
-		// Music
-		Raylib.PlayMusicStream(Assets.music);
+        game = new GameEventManager();
+        game.init();
 
-		PlayerHandler.Start();
-	}
+        initWindow();
+        initThread();
 
-
-
-	private static void update() {
-		
-		if (shutUp == false) Raylib.UpdateMusicStream(Assets.music);
-
-		// Update and add new players
-		PlayerHandler.update();
-	}
+    }
 
 
 
-	private static void render() {
+    private static final void setSystemProperties() {
 
-		Raylib.BeginDrawing();
-		Raylib.ClearBackground(new Color(0, 0, 255, 255));
+        System.setProperty("sun.java2d.opengl", "true");
+        System.setProperty("sun.awt.noerasebackground", "true");
 
-		
-		// Draw all the players and their information
-		PlayerHandler.render();
-		
-		Raylib.EndDrawing();
-	}
+    }
 
 
 
-	private static void cleanUp() {
-		
-		// Unload all the assets
-		AssetManager.unloadAll();
+    private static final void initThread() {
 
-		// Close the raylib window
-		//! Do this last
-		Raylib.CloseWindow();
+        thread = new Thread(new Main());
+        thread.start();
 
-	}
+    }
+
+
+    
+    private static final void initWindow() {
+
+        GL_WINDOW.setSize(640, 480);
+        // GL_WINDOW.setFullscreen(true);
+        GL_WINDOW.setTitle("Test GLWindow");
+        GL_WINDOW.setUndecorated(false);
+
+        GL_WINDOW.addGLEventListener(new RenderEventListener(game));
+        GL_WINDOW.addWindowListener(new WindowEventListener(game));
+        GL_WINDOW.addKeyListener(new KeyEventListener(game));
+        GL_WINDOW.addMouseListener(new MouseEventListener(game));
+
+        GL_WINDOW.setVisible(true);
+
+    }
+
+
+    
+    private static final void update() {
+
+        game.update();
+
+    }
+
+
+    
+    private static final void draw() {
+
+        GL_WINDOW.display();
+
+    }
+
+
+    
+    @Override
+    public void run() {
+
+        double drawInterval = 1000000000 / FPS;
+        delta = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
+
+        while (thread != null) {
+
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / drawInterval;
+            lastTime = currentTime;
+
+            if (delta >= 1) {
+
+                // Update
+                update();
+
+                // Render
+                draw();
+
+                delta--;
+
+            }
+
+        }
+
+    }
+
 }
