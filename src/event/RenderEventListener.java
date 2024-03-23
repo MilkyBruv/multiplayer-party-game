@@ -10,7 +10,6 @@ import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.math.Matrix4;
 
-import game.GameEventManager;
 import gfx.Renderer;
 import shader.Shader;
 

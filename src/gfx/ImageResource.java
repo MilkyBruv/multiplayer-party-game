@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
+
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -38,7 +39,7 @@ public class ImageResource {
      * @param fileName - Name of file
      * @throws IOException If cannot find specified image
      */
-    public ImageResource(String fileName) throws IOException {
+    public ImageResource(String fileName) throws IllegalArgumentException, IOException {
 
         // Read image data from File and get dimensions
         this.bufferedImage = ImageIO.read(Main.class.getResourceAsStream("../res/" + fileName));

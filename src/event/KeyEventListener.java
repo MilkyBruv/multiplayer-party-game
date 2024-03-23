@@ -3,8 +3,6 @@ package event;
 import com.jogamp.newt.event.KeyEvent;
 import com.jogamp.newt.event.KeyListener;
 
-import game.GameEventManager;
-
 public final class KeyEventListener implements KeyListener {
 
     private GameEventManager game;

@@ -8,12 +8,18 @@
 
             "files": [
         
+                "src/camera/*.java",
                 "src/common/*.java",
+                "src/controller/*.java",
+                "src/debug/*.java",
+                "src/entity/*.java",
                 "src/event/*.java",
                 "src/game/*.java",
                 "src/gfx/*.java",
                 "src/main/*.java",
-                "src/shader/*.java"
+                "src/sfx/*.java",
+                "src/shader/*.java",
+                "src/ui/*.java"
         
             ],
         
@@ -24,11 +30,13 @@
                 "lib/joal-natives-windows-amd64.jar",
                 "lib/joal.jar",
                 "lib/jogl-all-natives-windows-amd64.jar",
-                "lib/jogl-all.jar"
+                "lib/jogl-all.jar",
+                "lib/jinput-2.0.10.jar",
+                "lib/jinput-2.0.10-natives-all.jar"
         
             ],
         
-            "natives": "natives",
+            "natives": "lib/natives",
         
             "classfiles": "bin"
 

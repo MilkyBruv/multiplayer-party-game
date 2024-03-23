@@ -4,11 +4,11 @@ import com.jogamp.newt.opengl.GLWindow;
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLProfile;
 
+import event.GameEventManager;
 import event.KeyEventListener;
 import event.MouseEventListener;
 import event.RenderEventListener;
 import event.WindowEventListener;
-import game.GameEventManager;
 
 public final class Main implements Runnable {
 
