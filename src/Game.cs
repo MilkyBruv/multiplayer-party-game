@@ -2,12 +2,15 @@ using Raylib_cs;
 
 class Game
 {
+	public static readonly int Width = 854;
+	public static readonly int Height = 480;
+
 	public static void Run()
 	{
 		// Set up all the raylib stuff
 		Raylib.SetConfigFlags(ConfigFlags.AlwaysRunWindow);
 		Raylib.SetConfigFlags(ConfigFlags.ResizableWindow);
-		Raylib.InitWindow(854, 480, "mpg restart 3");
+		Raylib.InitWindow(Width, Height, "mpg restart 3");
 		Raylib.InitAudioDevice();
 		Raylib.SetTargetFPS(144);
 
@@ -25,6 +28,7 @@ class Game
 	{
 		// Setup type stuff
 		Assets.LoadAssets();
+		SceneManager.Start();
 		PlayerHandler.Start();
 
 		// Start the game off in the lobby
@@ -50,6 +54,7 @@ class Game
 
 	private static void CleanUp()
 	{
+		SceneManager.CleanUp();
 		AssetManager.UnloadAssets();
 		
 		// Close the raylib window
