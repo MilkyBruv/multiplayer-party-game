@@ -3,8 +3,10 @@ using Raylib_cs;
 
 class PlayerHandler
 {
-	private static readonly int MaxPlayers = 4;
 	public static Player[] Players;
+	public static int PlayerCount;
+
+	public static readonly int MaxPlayers = 4;
 	private static bool[] connectedControllers;
 
 	public static void Start()
@@ -33,8 +35,6 @@ class PlayerHandler
 			if (player == null) continue;
 			player.Render();
 		}
-
-		TextUtils.DrawTextWithControllerInputs("Press <down_x> or <down_p> to join", new Vector2(10f, Raylib.GetScreenHeight() - 10f - 25f), 25, Color.White);
 	}
 
 
@@ -57,8 +57,10 @@ class PlayerHandler
 			if (!Raylib.IsGamepadButtonPressed(i, GamepadButton.RightFaceDown)) continue;
 
 			// Make a new player for that controller
+			// and increase the connected players counter
 			connectedControllers[i] = true;
 			Players[i] = new Player(i);
+			PlayerCount++;
 		}
 	}
 }

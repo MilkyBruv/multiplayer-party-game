@@ -5,16 +5,37 @@ class Player
 {
 	public int ControllerIndex { get; private set; }
 	public Vector2 Position { get; set; }
+	public Texture2D Texture { get; private set; }
 
 	private readonly float speed = 200f;
-	private Texture2D texture;
 
 	public Player(int controllerIndex)
 	{
 		// Assign a heap of stuff
 		// TODO: Use asset manager
 		ControllerIndex = controllerIndex;
-		texture = Assets.Player;
+		
+		// Set the player texture depending on the
+		// controller index
+		// TODO: Use lookup table
+		switch (controllerIndex)
+		{
+			case 0:
+				Texture = Assets.Player1;
+				break;
+
+			case 1:
+				Texture = Assets.Player2;
+				break;
+
+			case 2:
+				Texture = Assets.Player3;
+				break;
+
+			case 3:
+				Texture = Assets.Player4;
+				break;
+		}
 
 		Console.WriteLine($"Player with controller index {ControllerIndex} registered!!");
 	}
@@ -26,7 +47,7 @@ class Player
 
 	public void Render()
 	{
-		Raylib.DrawTextureV(texture, Position, Color.White);
+		Raylib.DrawTextureV(Texture, Position, Color.White);
 	}
 
 

@@ -3,16 +3,13 @@ using Raylib_cs;
 
 class LobbyScene : Scene
 {
-
-	private Button readyUpButton;
+	private int playersReadiedUp = 0;
 
 	public override void Start()
 	{
-		// Make the ready up button and have it automatically
-		// selected because this is the only UI element in the scene
-		readyUpButton = new Button("Ready Up", StartNewGame, new Vector2(250, 150), new Vector2(300, 75), 50f);
-		readyUpButton.Selected = true;
-		readyUpButton.Disabled = true;
+
+
+		base.Start();
 	}
 
 	public override void Update()
@@ -20,21 +17,71 @@ class LobbyScene : Scene
 		// Check for if a new controller/player joins
 		PlayerHandler.ConnectNewPlayers();
 
-		// Update UI
-		readyUpButton.Update();
+
+		// Check for if everyone has readied up. If they
+		// all have then start a new game
+		if (PlayerHandler.PlayerCount >= 2 && playersReadiedUp == PlayerHandler.PlayerCount)
+		{
+			Console.WriteLine("Starting new game rn");
+			SceneManager.SetScene(new GameScene());
+		}
 	}
 
 	public override void Render()
 	{
-		Raylib.DrawText("Lobby", 150, 150, 16, Color.White);
+		Raylib.BeginMode2D(camera);
 
-		// Render UI
-		readyUpButton.Render();
-	}
 
-	private void StartNewGame()
-	{
-		Console.WriteLine("Starting new game rn");
-		SceneManager.SetScene(new GameScene());
+		// Draw the lobby background
+		Raylib.DrawTexture(Assets.LobbyBackground, 0, 0, Color.White);
+
+		// Draw all the players in the lobby
+		Vector2 position = Vector2.Zero;
+		float scale = 1f;
+		foreach (Player player in PlayerHandler.Players)
+		{
+			if (player == null) continue;
+
+			// Get the position and scale
+			// TODO: Don't hardcode
+			// switch (player.ControllerIndex)
+			switch (player.ControllerIndex)
+			{
+				case 0:
+					position = new Vector2(350, 430 - player.Texture.Height);
+					scale = 1;
+					break;
+				
+				case 1:
+					position = new Vector2(470, 430 - player.Texture.Height);
+					scale = 0.8f;
+					break;
+
+				case 2:
+					position = new Vector2(255, 435 - player.Texture.Height);
+					scale = 0.8f;
+					break;
+				
+				case 3:
+					position = new Vector2(570, 470 - player.Texture.Height);
+					scale = 0.6f;
+					break;
+			}
+		
+			// Draw the player
+			Raylib.DrawTextureEx(player.Texture, position, 0f, scale, Color.White);
+		}
+
+
+		// Show a connection prompt if there is still
+		// a space left for a player to join
+		if (PlayerHandler.PlayerCount < PlayerHandler.MaxPlayers)
+		{
+			TextUtils.DrawTextWithControllerInputs("Press <down_x> or <down_p> to join", new Vector2(10, Game.Height - 10 - 25), 25, Color.White);
+		}
+
+
+
+		Raylib.EndMode2D();
 	}
 }

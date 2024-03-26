@@ -2,8 +2,12 @@ using Raylib_cs;
 
 class Assets
 {
-	public static Texture2D Player { get; private set; }
+	public static Texture2D Player1 { get; private set; }
+	public static Texture2D Player2 { get; private set; }
+	public static Texture2D Player3 { get; private set; }
+	public static Texture2D Player4 { get; private set; }
 
+	public static Texture2D LobbyBackground { get; private set; }
 	public static Texture2D Raft0 { get; private set; }
 	public static Texture2D Raft1 { get; private set; }
 	public static Texture2D Raft2 { get; private set; }
@@ -26,10 +30,14 @@ class Assets
 	// TODO: Assets.LoadAssets and AssetManager.UnloadAssets
 	public static void LoadAssets()
 	{
-		// Player texture(s)
-		Player = AssetManager.LoadTexture(AssetManager.TexturePath, "player");
+		// Player textures
+		Player1 = AssetManager.LoadTexture(AssetManager.TexturePath, "player1");
+		Player2 = AssetManager.LoadTexture(AssetManager.TexturePath, "player2");
+		Player3 = AssetManager.LoadTexture(AssetManager.TexturePath, "player3");
+		Player4 = AssetManager.LoadTexture(AssetManager.TexturePath, "player4");
 
 		// Environmental textures
+		LobbyBackground = AssetManager.LoadTexture(AssetManager.TexturePath, "background");
 		Raft0 = AssetManager.LoadTexture(AssetManager.TexturePath, "raft0");
 		Raft1 = AssetManager.LoadTexture(AssetManager.TexturePath, "raft1");
 		Raft2 = AssetManager.LoadTexture(AssetManager.TexturePath, "raft2");

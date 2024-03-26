@@ -1,6 +1,8 @@
 using System.Numerics;
 using Raylib_cs;
 
+// TODO: This whole class kinda useless because controller so maybe remove
+
 // TODO: Make image button class
 class Button
 {
@@ -36,21 +38,6 @@ class Button
 	{
 		// Don't do anything if the button is disabled
 		if (Disabled) return;
-
-		// Check for if the button is selected, and
-		// if they press the select button, then run
-		// the click method supplied in the constructor
-		//? Selection isn't handled here because of the controller the layouts are different all the time. There isn't a mouse or anything that we're looking for
-		if (Selected)
-		{
-			// Loop through every player and check for if
-			// they press the button
-			foreach (Player player in PlayerHandler.Players)
-			{
-				if (player == null) continue;
-				if (Raylib.IsGamepadButtonPressed(player.ControllerIndex, GamepadButton.RightFaceDown)) onClick();
-			}
-		}
 	}
 
 	public void Render()
@@ -59,11 +46,19 @@ class Button
 		// the buttons text
 		// TODO: Put a border/outline on the button or something
 		Raylib.DrawRectangleRec(shape, new Color(214, 79, 0, 255));
-		Raylib.DrawTextEx(Raylib.GetFontDefault(), text, textPosition, fontSize, (fontSize / 10f), Color.White);
+		TextUtils.DrawTextWithControllerInputs(text, textPosition, (int)fontSize, Color.White);
 
-		// TODO: Make the button greyed out if its disabled
+		// Make the button greyed out if its disabled
+		// TODO: Make this look half decent
+		Raylib.DrawRectangleRec(shape, new Color(255, 255, 255, 128));
 
 		// If the button is selected then draw a border around it
 		if (Selected) Raylib.DrawRectangleLinesEx(shape, 5f, Color.Yellow);
+	}
+
+	// TODO: Don't do this
+	public void Click()
+	{
+		onClick();
 	}
 }
