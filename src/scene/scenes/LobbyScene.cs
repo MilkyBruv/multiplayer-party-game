@@ -3,13 +3,14 @@ using Raylib_cs;
 
 class LobbyScene : Scene
 {
-	private int playersReadiedUp = 0;
+	private bool[] playersReadiedUp;
 
 	public override void Start()
 	{
-
-
+		// Camera rubbish
 		base.Start();
+
+		playersReadiedUp = new bool[PlayerHandler.MaxPlayers];
 	}
 
 	public override void Update()
@@ -17,10 +18,24 @@ class LobbyScene : Scene
 		// Check for if a new controller/player joins
 		PlayerHandler.ConnectNewPlayers();
 
+		// Check for if a player presses the
+		// ready up button
+		for (int i = 0; i < PlayerHandler.MaxPlayers; i++)
+		{
+			// Skip if that player isn't connected
+			if (!Raylib.IsGamepadAvailable(i)) continue;
+
+			// Toggle their ready stats
+			if (Raylib.IsGamepadButtonPressed(i, GamepadButton.RightFaceDown))
+			{
+				playersReadiedUp[i] = !playersReadiedUp[i];
+			}
+		}
 
 		// Check for if everyone has readied up. If they
 		// all have then start a new game
-		if (PlayerHandler.PlayerCount >= 2 && playersReadiedUp == PlayerHandler.PlayerCount)
+		int playersReadiedUpCount = playersReadiedUp.Count(x => x = true);
+		if (PlayerHandler.PlayerCount >= 2 && playersReadiedUpCount == PlayerHandler.PlayerCount)
 		{
 			Console.WriteLine("Starting new game rn");
 			SceneManager.SetScene(new GameScene());
@@ -44,7 +59,6 @@ class LobbyScene : Scene
 
 			// Get the position and scale
 			// TODO: Don't hardcode
-			// switch (player.ControllerIndex)
 			switch (player.ControllerIndex)
 			{
 				case 0:
@@ -70,8 +84,16 @@ class LobbyScene : Scene
 		
 			// Draw the player
 			Raylib.DrawTextureEx(player.Texture, position, 0f, scale, Color.White);
+
+			// Draw a nametag above them
+			Raylib.DrawText($"Player {player.ControllerIndex + 1}", (int)position.X + 15, (int)position.Y - 25, 24, Color.Black);
 		}
 
+		// Draw the ready up status
+		for (int i = 0; i < PlayerHandler.MaxPlayers; i++)
+		{
+			Raylib.DrawText($"player {i + 1}: {playersReadiedUp[i]}", 10, i * 24, 24, Color.Magenta);
+		}
 
 		// Show a connection prompt if there is still
 		// a space left for a player to join
